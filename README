@@ -1,0 +1,166 @@
+/**********************************************************
+* Project 1: Metro Simulator
+* CS 15
+* README
+* Author: Hannah Jiang (hjiang03)
+*********************************************************/
+
+Compile/run:
+     - Compile using
+            make MetroSim
+     - run executable with
+            ./MetroSim stationsFile passFile [commands]
+
+
+Program Purpose:
+
+    Create a working train simulation of passengers entering
+    and exiting the train.
+
+Acknowledgements: 
+
+    CS15 Lecture on Queues
+    CS15 Lecture on I/O streams
+    CPlusPlus.com on List/Vector
+    TA Office Hours
+
+Files: 
+
+    main.cpp:
+        Main file should be short and handle simple driver
+        functions such as reading in files.
+
+    MetroSim.cpp:
+        Implementation of MetroSim class. Main
+        functionality of running the Metro Simulation, should be able to
+        move trains and deal with passengers going on/off the train.
+
+    MetroSim.h:
+        Interface of MetroSim class.
+
+    PassengerQueue.cpp:
+        Implementation of PassengerQueue class. Main function is to create
+        a queue list of passengers that can be edited by the functions
+        in the PassengerQueue class
+
+    PassengerQueue.h:
+        Interface of PassengerQueue class
+
+    Passenger.cpp:
+        Implementation of Passenger struct. Main function is to create
+        a new passenger and print out their id and where they are getting
+        on/off the train
+
+    Passenger.h: 
+        Interface of Passenger struct
+
+    stations.txt:
+        an example file containing a list of stations.
+
+    test_commands.txt:
+        sample list of commands that you could give to the simulator
+
+    the_metroSim:
+        reference implementation for students to see how 
+
+    my.output: 
+        the testing I did for my program 
+
+    ref.output:
+        the testing I did for the reference program
+
+
+Note: the program should handle all cases.
+
+Data Structures:
+
+    Queues: I used a queue data structure for the PassengerQueue. The queue
+    allowed me to easily add passengers to the end of the queue and then
+    remove them from the front using a function. 
+
+    Vectors: I created an array of queues for the train and stations in 
+    this project. I sorted the station vector by the passengers station 
+    arrival which allowed me to easily move all passengers to the train
+    vector. The train vector was sorted by departure station because that
+    easily allowed me to access one part of the vector and then remove all
+    passengers that were leaving the train at that section.
+
+Testing:
+
+    ---PASSENGER.CPP TESTING---
+
+    The first part of the project I started with the Passenger print function.
+    To test it I first I initialized a Passenger with all the data, 
+    then I created a test file (text.txt). I called the print function 
+    to send it into the test.txt file and once it printed out the message 
+    that followed the spec, I was done testing this part of the project. 
+    
+    ---PASSENGERQUEUE.CPP TESTING---
+
+    The next part of the project that I started was the PassengerQueue. I 
+    created a list for my PassengerQueue. It is initialized as an empty list. 
+    I started testing my enqueue function by enqueuing multiple passengers and 
+    checking if the list equals the amount of passangers that I added to the 
+    queue. I also tested the dequeue in the same function and also checking if 
+    after I ran the dequeue that the size of the list actually goes down. I 
+    didn't test the edge case of calling the dequeue going from 0->(negatives) 
+    because I plan to only call this function and checking those edge cases in 
+    the MetroSim.cpp functions. 
+
+    I tested my PassengerQueue front function by intializing a list of 
+    Passengers and then calling the PassengerQueue front function. I made an 
+    empty passenger and set it equal to the front function. I then called the 
+    singular passenger print function and made sure the expected output was 
+    the first passenger I added to the list. I got the expected output and 
+    then moved on to my last test for the PassengerQueue functions.
+
+    For testing my PassengerQueue print function, I made a list of Passengers 
+    and then called the PassengerQueue print functions. It printed out exactly 
+    how I wanted it to print. I think the hardest part of this was figuring 
+    out how to access an element in the struct through the list (calling the 
+    print function that I created in the Passenger.cpp file). But once it 
+    printed the what I expected it to print, I was done with the 
+    PassengerQueue.cpp.
+
+    ---METROSIM.CPP TESTING---
+    For metrosim testing, I based most of it on terminal and just running
+    my program to see if it's producing the desired affects. I then tested
+    it fully by diffing it against the_MetroSim project (my.output vs. 
+    ref.output). Once the diff didn't produce any differences I was done 
+    with all my testing of each function. 
+
+    ---MAIN.CPP TESTING--
+    I first decided to start with the main.cpp and running the game with the
+    files that the person inputs into the program. For this, I just used cout
+    commands to make sure that the right functions were being called. It was
+    pretty straight forward in making sure that my function would throw an 
+    error if there wasn't the right amount of files entered.
+
+    ---FILES TESTING---
+    For the command file, I had put an infile in the main.cpp to check 
+    whether or not a command file was inputed. If there wasn't a command
+    file provided my game would run without the command file, else it
+    would run with the command file. (For testing of whether or not 
+    this called the correct functions of running see MAIN.CPP TESTING
+    section).
+
+    In the MetroSim.cpp for files, I tested opening valid files. 
+    If the stations file that was given was not provided, the game would
+    exit and cerr an error message. I tested this by providing a valid stations
+    file and then an invalid one and making sure that my program through an 
+    error message. Once it matched what the spec said should be printed for 
+    the cerr message, I continued my coding.
+
+    --- HARDEST PART OF THE PROJECT ---
+
+    I think the part I found most difficult was figuring out the syntax for
+    vectors/lists and how to call them, especially since we were working with
+    all different files. But once I figured that out, the rest of the project
+    was just testing a whole lot and making sure that it worked. I also think
+    figuring out how to use fstream and using the output stream was a learning
+    curve especially since we did not learn it before.
+
+    Also I wish we learned the I/O streams earlier because I had done most of
+    the project without knowing so it wasn't bad, but definitely would've been
+    nice to learn it earlier because I had to rework some of my functions after
+    learning it even though I was done with the project.
